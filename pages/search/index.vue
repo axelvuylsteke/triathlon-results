@@ -1,5 +1,7 @@
 <template>
-  <div>USER ID PAGE</div>
+  <dir>
+    SEARCH
+  </dir>
 </template>
 
 <script>

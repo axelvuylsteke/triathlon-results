@@ -3,45 +3,49 @@
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
         <v-btn color="primary" dark v-on="on">
-          Create Athlete
+          Create Race
         </v-btn>
       </template>
       <v-card>
         <v-card-title>
-          <span class="headline">Athlete Creation</span>
+          <span class="headline">Race Creation</span>
         </v-card-title>
         <v-card-text>
           <v-container>
             <v-row>
               <v-col cols="12" sm="6">
-                <v-text-field
-                  v-model="firstName"
-                  label="First Name*"
+                <v-text-field v-model="name" label="Race Name*" required />
+              </v-col>
+              <v-col cols="12" sm="6">
+                <v-select
+                  v-model="distance"
+                  :items="['Full', 'Half', 'Olympic', 'Custom']"
+                  label="Distance*"
                   required
                 />
               </v-col>
-              <v-col cols="12" sm="6">
-                <v-text-field v-model="lastName" label="Last Name" required />
+              <v-col cols="12" sm="6" md="4">
+                <v-text-field v-model="swim" label="Swim**" required />
+              </v-col>
+              <v-col cols="12" sm="6" md="4">
+                <v-text-field v-model="bike" label="Bike**" required />
+              </v-col>
+              <v-col cols="12" sm="6" md="4">
+                <v-text-field v-model="run" label="Run**" required />
               </v-col>
               <v-col cols="12" sm="6">
-                <v-text-field v-model="club" label="Club*" required />
+                <v-text-field v-model="city" label="City*" required />
               </v-col>
               <v-col cols="12" sm="6">
-                <v-text-field v-model="country" label="Country*" required />>
+                <v-text-field v-model="country" label="Country*" required />
               </v-col>
               <v-col cols="12" sm="6">
-                <v-text-field v-model="email" label="Email*" required />
-              </v-col>
-              <v-col cols="12" sm="6">
-                <v-text-field
-                  v-model="birthDate"
-                  label="Birth Date*"
-                  required
-                />
+                <v-text-field v-model="website" label="Website*" required />
               </v-col>
             </v-row>
           </v-container>
           <small>*indicates required field</small>
+          <small>**Distances in km</small>
         </v-card-text>
         <v-card-actions>
           <div class="flex-grow-1" />
@@ -61,29 +65,31 @@
 export default {
   data: () => {
     return {
-      firstName: '',
-      lastName: '',
-      club: '',
-      email: '',
+      name: '',
+      distance: '',
+      swim: '',
+      bike: '',
+      run: '',
       country: '',
-      birthDate: '',
+      city: '',
+      website: '',
       dialog: false
     }
   },
   methods: {
     async submit({ store, error }) {
-      const athlete = {
-        firstName: this.firstName,
-        lastName: this.lastName,
-        club: this.club,
-        email: this.email,
-        country: this.country
+      const race = {
+        name: this.name,
+        distance: this.distance,
+        swim: this.swim,
+        bike: this.bike,
+        run: this.run,
+        country: this.country,
+        city: this.city,
+        website: this.website
       }
       try {
-        await this.$store.dispatch(
-          'athletes/createAthlete',
-          JSON.stringify(athlete)
-        )
+        await this.$store.dispatch('races/createRace', JSON.stringify(race))
       } catch (err) {
         console.log(err)
       }

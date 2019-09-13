@@ -8,11 +8,15 @@
         Home
       </nuxt-link>
       |
+      <nuxt-link to="/search/">
+        Search
+      </nuxt-link>
+      |
       <nuxt-link to="/athlete/">
         Athletes
       </nuxt-link>
       |
-      <nuxt-link to="/races/">
+      <nuxt-link to="/race/">
         Races
       </nuxt-link>
       |
