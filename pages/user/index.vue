@@ -1,11 +1,16 @@
 <template>
   <div>
-    USER PAGE
+    <newUser />
   </div>
 </template>
 
 <script>
-export default {}
+import newUser from '~/components/newUser.vue'
+export default {
+  components: {
+    newUser
+  }
+}
 </script>
 
 <style></style>

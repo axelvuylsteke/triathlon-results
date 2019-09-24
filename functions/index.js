@@ -3,6 +3,7 @@ const admin = require('firebase-admin')
 
 const athleteFunctions = require('./athlete')
 const raceFunctions = require('./race')
+const userFunctions = require('./user')
 
 admin.initializeApp()
 const fireDb = admin.firestore()
@@ -45,4 +46,8 @@ exports.putRace = functions.https.onRequest(async (req, resp) => {
 
 exports.delRace = functions.https.onRequest(async (req, resp) => {
   await raceFunctions.delRace(req, resp, fireDb)
+})
+
+exports.postUser = functions.https.onRequest(async (req, resp) => {
+  await userFunctions.postUser(req, resp, fireDb)
 })
